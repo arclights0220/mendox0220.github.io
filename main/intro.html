@@ -53,6 +53,7 @@
 
                     <label for="drawing-shadow-offset">Shadow offset:</label>
                     <span>0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
+                    <button class="drawbtn" id="txboox">text box</button>
                 </div>
             </div>
             <input type="text" class="proname" id="proname" placeholder="project name">
@@ -254,6 +255,29 @@
                     color: drawingShadowColorEl.value,
                 });
             }
+
+            var txbox = new fabric.Textbox('write here!', {
+                width: 300,
+                top: 40,
+                left: 40,
+                fontSize: 60,
+                textAlign: 'center',
+                fixWidth: 300
+            });
+
+            canvas.on('text:changed', function(opt){
+                var txbox = opt.target;
+                if(txbox.width > txbox.fixedWidth) {
+                    txbox.fontSize *= txbox.fixedWidth / (txbo.width + 1);
+                    txbox.width = txbox.fixedWidth;
+                }
+            })
+            
+            var txboox = document.getElementById("txboox");
+            txboox.addEventListener('click', ()=> {
+                canvas.add(txbox);
+            })
+
         })();
 
         function download_image() {

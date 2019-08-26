@@ -266,19 +266,28 @@
                 fixWidth: 300
             });
 
-            canvas.on('text:changed', function(opt){
+            canvas.on('text:changed', function (opt) {
                 var txbox = opt.target;
-                if(txbox.width > txbox.fixedWidth) {
-                    txbox.fontSize *= txbox.fixedWidth / (txbo.width + 1);
+                if (txbox.width > txbox.fixedWidth) {
+                    txbox.fontSize *= txbox.fixedWidth / (txbox.width + 1);
                     txbox.width = txbox.fixedWidth;
                 }
             })
-            
+
             var txboox = document.getElementById("txboox");
 
-            txboox.addEventListener('click', ()=> {
-                canvas.add(txbox);
+            txboox.addEventListener('click', () => {
+                canvas.add(new fabric.Textbox('write here!', {
+                    width: 300,
+                    top: 40,
+                    left: 40,
+                    fontSize: 60,
+                    textAlign: 'center',
+                    fontFamily: 'Red Hat Text',
+                    fixWidth: 300
+                }));
             })
+
         })();
 
         function download_image() {
@@ -293,4 +302,4 @@
     </script>
 </body>
 
-</html> 
+</html>

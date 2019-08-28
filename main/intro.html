@@ -41,19 +41,21 @@
 
                     <label for="drawing-line-width">Line width:</label>
                     <span>30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+                    <div id="drawoffset">
+                        <label for="drawing-color">Line color:</label>
+                        <input type="color" value="#000000" id="drawing-color"><br>
 
-                    <label for="drawing-color">Line color:</label>
-                    <input type="color" value="#000000" id="drawing-color"><br>
+                        <label for="drawing-shadow-color">Shadow color:</label>
+                        <input type="color" value="#000000" id="drawing-shadow-color"><br>
 
-                    <label for="drawing-shadow-color">Shadow color:</label>
-                    <input type="color" value="#000000" id="drawing-shadow-color"><br>
+                        <label for="drawing-shadow-width">Shadow width:</label>
+                        <span>0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
 
-                    <label for="drawing-shadow-width">Shadow width:</label>
-                    <span>0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
-
-                    <label for="drawing-shadow-offset">Shadow offset:</label>
-                    <span>0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
+                        <label for="drawing-shadow-offset">Shadow offset:</label>
+                        <span>0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
+                    </div>
                     <button class="drawbtn" id="txboox">text box</button>
+                    <button class="drawbtn" id="eraser">eraser</button>
                 </div>
             </div>
             <input type="text" class="proname" id="proname" placeholder="project name">
@@ -91,7 +93,9 @@
                 drawingLineWidthEl = $('drawing-line-width'),
                 drawingShadowWidth = $('drawing-shadow-width'),
                 drawingShadowOffset = $('drawing-shadow-offset'),
-                clearEl = $('clear-canvas');
+                clearEl = $('clear-canvas'),
+                eraser = $('eraser'),
+                drawoffset = $('drawoffset');
 
             clearEl.onclick = function () {
                 canvas.clear()
@@ -189,7 +193,6 @@
                 };
 
                 var img = new Image();
-                img.src = '../assets/honey_im_subtle.png';
 
                 var texturePatternBrush = new fabric.PatternBrush(canvas);
                 texturePatternBrush.source = img;
@@ -255,6 +258,29 @@
                     color: drawingShadowColorEl.value,
                 });
             }
+            var count = 0;
+            eraser.onclick = function () {
+                if (count == 0) {
+                    canvas.freeDrawingBrush.color = "white";
+                    canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+                    drawoffset.style.display = "none";
+                    count += 1;
+                    eraser.innerHTML = "draw"
+                } else if (count == 1) {
+                    canvas.freeDrawingBrush.color = drawingColorEl.value;
+                    drawoffset.style.display = "block";
+                    canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+                    canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+                        blur: parseInt(drawingShadowWidth.value, 10) || 0,
+                        offsetX: 0,
+                        offsetY: 0,
+                        affectStroke: true,
+                        color: drawingShadowColorEl.value,
+                    });
+                    eraser.innerHTML = "eraser"
+                    count -= 1;
+                }
+            }
 
             var txbox = new fabric.Textbox('write here!', {
                 width: 300,
@@ -287,6 +313,10 @@
                     fixWidth: 300
                 }));
             })
+
+
+
+
 
         })();
 

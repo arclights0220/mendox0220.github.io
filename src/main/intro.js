@@ -22,4 +22,11 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
     }
 })
-
+function look() {
+    var x = document.getElementsByClassName("tip-content")[0];
+    x.style.opacity = "1";
+}
+function Nlook() {
+    var x = document.getElementsByClassName("tip-content")[0];
+    x.style.opacity = "0";
+}

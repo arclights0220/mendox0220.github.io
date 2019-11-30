@@ -22,7 +22,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
     }
 })
-var p = 10;
+var p = 10, q= 10, m=10;
 function look(e) {
     if (e == 1) {
         var x = document.getElementsByClassName("tip-content")[0];
@@ -32,16 +32,19 @@ function look(e) {
         var x = document.getElementsByClassName("tip-content2")[0];
         x.style.opacity = "1";
         x.style.transitionDelay = p + "ms";
+        p = 1000;
     }
     else if (e == 3) {
         var x = document.getElementsByClassName("tip-content3")[0];
         x.style.opacity = "1";
-        x.style.transitionDelay = p + "ms";
+        x.style.transitionDelay = q + "ms";
+        q = 1000;
     }
     else {
         var x = document.getElementsByClassName("deleteObject")[0];
         x.style.opacity = "1";
-        x.style.transitionDelay = p + "s";
+        x.style.transitionDelay = m + "s";
+        m = 1000;
     }
    
 }

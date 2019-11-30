@@ -66,6 +66,7 @@
     color: #818181;
     display: block;
     transition: 0.3s; 
+    transition: 444ms;
   }
 
   .Leftnav a:hover {
@@ -164,6 +165,7 @@
     background-color: white;
     color: #111;
   }
+
   .tip-content{
     position: absolute;
     left: 2.5vw;
@@ -176,14 +178,14 @@
     top: calc(10vh - 30px);
     left: calc(93vw + 10px);
     opacity: 0;
-    transition-duration: 333ms;
+    transition-duration: 555ms;
   }
   .tip-content3{
     position: absolute;
     top: calc(10vh + 90px);
     left: calc(93vw + 10px);
     opacity: 0;
-    transition-duration: 333ms;
+    transition-duration: 555ms;
   }
   
   .deleteObject{
@@ -201,7 +203,13 @@
   font-size: 0.9em;
   width: 110px;
   height: 40px;
-  border: none; 
+  outline: none;
+  border: none;
+  transition-duration: 444ms;
+}
+.outbtn1:hover, .outbtn2:hover{
+  background: white;
+  color: #ffa114;
 }
 .outbtn2{
   position: absolute;
@@ -212,4 +220,6 @@
   width: 110px;
   height: 40px;
   border: none;
+  outline: none;
+  transition-duration: 444ms;
 }

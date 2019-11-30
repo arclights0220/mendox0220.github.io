@@ -15,19 +15,19 @@
         </div>
     </div>
     <div id="main">
-        <span id="Lnbtn" style="font-size:30px; cursor:pointer;margin-left: 10px;" onclick="openLNav()"
-            onmouseover="look(1)" onmouseout="Nlook(1)">&#9776;</span>
+        <span id="Lnbtn" style="font-size:30px; cursor:pointer;margin-left: 10px;" onclick="openLNav()"onmouseover="look(1)" onmouseout="Nlook(1)">&#9776;</span>
         <span class="tip-content">press tab key.</span>
-        <div>
-            <button class="outbtn1" id="eraser2" onmouseover="look(2)" onmouseout="Nlook(2)">erase</button>
-            <span class="tip-content2">press 'ctrl + d'.</span>
-        </div>
-        <div>
-            <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Cancel drawing
-                mode</button>
-            <span class="tip-content3">press 'ctrl + a'.</span>
-        </div>
 
+            <div>
+                <button class="outbtn1" id="eraser2" onmouseover="look(2)" onmouseout="Nlook(2)">erase</button>
+                <span class="tip-content2">press 'ctrl + d'.</span>
+            </div>
+            <div>
+                <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Cancel drawing
+                    mode</button>
+                <span class="tip-content3">press 'ctrl + a'.</span>
+            </div>
+    
 
 
 
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <input type="text" class="proname" id="proname" placeholder="project name">
-            <button class="downbtn" onclick="download_image()">download</button>
+            <button class="downbtn" id="downbtn" onclick="download_image()">download</button>
 
 
         </div>
@@ -102,45 +102,45 @@
             });
 
             fabric.Object.prototype.transparentCorners = false;
-
-            var drawingModeEl = $('drawing-mode'),
-                drawingModeEl2 = $('drawing-mode2'),
-                drawingOptionsEl = $('drawing-mode-options'),
-                drawingColorEl = $('drawing-color'),
-                drawingShadowColorEl = $('drawing-shadow-color'),
-                drawingLineWidthEl = $('drawing-line-width'),
-                drawingShadowWidth = $('drawing-shadow-width'),
-                drawingShadowOffset = $('drawing-shadow-offset'),
-                clearEl = $('clear-canvas'),
+            var plw;
+            var dmElement = $('drawing-mode'),
+                dmElement2 = $('drawing-mode2'),
+                doElement = $('drawing-mode-options'),
+                dcElement = $('drawing-color'),
+                dsColorElement = $('drawing-shadow-color'),
+                dLWElement = $('drawing-line-width'),
+                dsWidth = $('drawing-shadow-width'),
+                dsOffset = $('drawing-shadow-offset'),
+                clearElement = $('clear-canvas'),
                 eraser = $('eraser'),
                 drawoffset = $('drawoffset');
 
-            clearEl.onclick = function () {
+            clearElement.onclick = function () {
                 canvas.clear()
             };
 
-            drawingModeEl.onclick = function () {
+            dmElement.onclick = function () {
                 canvas.isDrawingMode = !canvas.isDrawingMode;
                 if (canvas.isDrawingMode) {
-                    drawingModeEl.innerHTML = 'Cancel drawing mode';
-                    drawingOptionsEl.style.display = '';
-                    drawingModeEl2.innerHTML = "Cancel drawing mode";
+                    dmElement.innerHTML = 'Cancel drawing mode';
+                    doElement.style.display = '';
+                    dmElement2.innerHTML = "Cancel drawing mode";
                 } else {
-                    drawingModeEl.innerHTML = 'Enter drawing mode';
-                    drawingOptionsEl.style.display = 'none';
-                    drawingModeEl2.innerHTML = 'Enter drawing mode';
+                    dmElement.innerHTML = 'Enter drawing mode';
+                    doElement.style.display = 'none';
+                    dmElement2.innerHTML = 'Enter drawing mode';
                 }
             };
-            drawingModeEl2.onclick = function () {
+            dmElement2.onclick = function () {
                 canvas.isDrawingMode = !canvas.isDrawingMode;
                 if (canvas.isDrawingMode) {
-                    drawingModeEl.innerHTML = 'Cancel drawing mode';
-                    drawingModeEl2.innerHTML = 'Cancel drawing mode';
-                    drawingOptionsEl.style.display = '';
+                    dmElement.innerHTML = 'Cancel drawing mode';
+                    dmElement2.innerHTML = 'Cancel drawing mode';
+                    doElement.style.display = '';
                 } else {
-                    drawingModeEl.innerHTML = 'Enter drawing mode';
-                    drawingModeEl2.innerHTML = 'Enter drawing mode';
-                    drawingOptionsEl.style.display = 'none';
+                    dmElement.innerHTML = 'Enter drawing mode';
+                    dmElement2.innerHTML = 'Enter drawing mode';
+                    doElement.style.display = 'none';
                 }
             };
 
@@ -247,47 +247,49 @@
                 }
 
                 if (canvas.freeDrawingBrush) {
-                    canvas.freeDrawingBrush.color = drawingColorEl.value;
-                    canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+                    canvas.freeDrawingBrush.color = dcElement.value;
+                    canvas.freeDrawingBrush.width = parseInt(dLWElement.value, 10) || 1;
                     canvas.freeDrawingBrush.shadow = new fabric.Shadow({
-                        blur: parseInt(drawingShadowWidth.value, 10) || 0,
+                        blur: parseInt(dsWidth.value, 10) || 0,
                         offsetX: 0,
                         offsetY: 0,
                         affectStroke: true,
-                        color: drawingShadowColorEl.value,
+                        color: dsColorElement.value,
                     });
                 }
             };
 
-            drawingColorEl.onchange = function () {
+            dcElement.onchange = function () {
                 canvas.freeDrawingBrush.color = this.value;
+                document.getElementById("LeftSidenav").style.backgroundColor = this.value;
+                document.getElementById("downbtn").style.backgroundColor = this.value;
             };
-            drawingShadowColorEl.onchange = function () {
+            dsColorElement.onchange = function () {
                 canvas.freeDrawingBrush.shadow.color = this.value;
             };
-            drawingLineWidthEl.onchange = function () {
+            dLWElement.onchange = function () {
                 canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
                 this.previousSibling.innerHTML = this.value;
             };
-            drawingShadowWidth.onchange = function () {
+            dsWidth.onchange = function () {
                 canvas.freeDrawingBrush.shadow.blur = parseInt(this.value, 10) || 0;
                 this.previousSibling.innerHTML = this.value;
             };
-            drawingShadowOffset.onchange = function () {
+            dsOffset.onchange = function () {
                 canvas.freeDrawingBrush.shadow.offsetX = parseInt(this.value, 10) || 0;
                 canvas.freeDrawingBrush.shadow.offsetY = parseInt(this.value, 10) || 0;
                 this.previousSibling.innerHTML = this.value;
             };
 
             if (canvas.freeDrawingBrush) {
-                canvas.freeDrawingBrush.color = drawingColorEl.value;
-                canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+                canvas.freeDrawingBrush.color = dcElement.value;
+                canvas.freeDrawingBrush.width = parseInt(dLWElement.value, 10) || 1;
                 canvas.freeDrawingBrush.shadow = new fabric.Shadow({
-                    blur: parseInt(drawingShadowWidth.value, 10) || 0,
+                    blur: parseInt(dsWidth.value, 10) || 0,
                     offsetX: 0,
                     offsetY: 0,
                     affectStroke: true,
-                    color: drawingShadowColorEl.value,
+                    color: dsColorElement.value,
                 });
             }
 
@@ -347,13 +349,13 @@
                 if (e.which == 65 && isCtrl == true) {
                     canvas.isDrawingMode = !canvas.isDrawingMode;
                     if (canvas.isDrawingMode) {
-                        drawingModeEl.innerHTML = 'Cancel drawing mode';
-                        drawingModeEl2.innerHTML = "Cancel drawing mode";
-                        drawingOptionsEl.style.display = '';
+                        dmElement.innerHTML = 'Cancel drawing mode';
+                        dmElement2.innerHTML = "Cancel drawing mode";
+                        doElement.style.display = '';
                     } else {
-                        drawingModeEl.innerHTML = 'Enter drawing mode';
-                        drawingModeEl2.innerHTML = 'Enter drawing mode';
-                        drawingOptionsEl.style.display = 'none';
+                        dmElement.innerHTML = 'Enter drawing mode';
+                        dmElement2.innerHTML = 'Enter drawing mode';
+                        doElement.style.display = 'none';
                     }
                     return false;
                 }
@@ -365,6 +367,7 @@
                     return false;
                 }
             }
+
 
         })();
 

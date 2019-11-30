@@ -171,3 +171,34 @@
     opacity: 0;
     transition-duration: 333ms;
   }
+  .tip-content2{
+    position: absolute;
+    top: calc(10vh - 30px);
+    left: calc(93vw + 20px);
+    opacity: 0;
+    transition-duration: 333ms;
+  }
+  
+  .deleteObject{
+    position: absolute;
+    font-size: 0.6em;
+    top: 10vh;
+    opacity: 0;
+    transition-duration: 444ms;
+  }
+.outbtn1{
+  position: absolute;
+  top: 10vh;
+  left: 93vw;
+  z-index: 100;
+  width: 110px;
+  height: 40px;
+}
+.outbtn2{
+  position: absolute;
+  top: calc(10vh + 50px);
+  left: 93vw;
+  z-index: 100;
+  width: 110px;
+  height: 40px;
+}

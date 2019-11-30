@@ -22,11 +22,36 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
     }
 })
-function look() {
-    var x = document.getElementsByClassName("tip-content")[0];
-    x.style.opacity = "1";
+var p = 0;
+function look(e) {
+    if (e == 1) {
+        var x = document.getElementsByClassName("tip-content")[0];
+        x.style.opacity = "1";
+    }
+    else if (e == 2) {
+        var x = document.getElementsByClassName("tip-content2")[0];
+        x.style.opacity = "1";
+        x.style.transitionDelay = p + "s";
+        p++;
+    }
+    else {
+        var x = document.getElementsByClassName("deleteObject")[0];
+        x.style.opacity = "1";
+    }
+   
 }
-function Nlook() {
-    var x = document.getElementsByClassName("tip-content")[0];
-    x.style.opacity = "0";
+function Nlook(e) {
+    if (e == 1) {
+        var x = document.getElementsByClassName("tip-content")[0];
+        x.style.opacity = "0";
+    }
+    else if (e == 2) {
+        var x = document.getElementsByClassName("tip-content2")[0];
+        x.style.opacity = "0";
+    }
+    else {
+        var x = document.getElementsByClassName("deleteObject")[0];
+        x.style.opacity = "0";
+    }
 }
+

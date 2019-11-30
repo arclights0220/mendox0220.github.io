@@ -22,22 +22,22 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
     }
 })
-var p = 1;
+var p = 444;
 function look(e) {
     if (e == 1) {
         var x = document.getElementsByClassName("tip-content")[0];
         x.style.opacity = "1";
-        x.style.transitionDelay = p + "s";
+        x.style.transitionDelay = p + "ms";
     }
     else if (e == 2) {
         var x = document.getElementsByClassName("tip-content2")[0];
         x.style.opacity = "1";
-        x.style.transitionDelay = p + "s";
+        x.style.transitionDelay = p + "ms";
     }
     else if (e == 3) {
         var x = document.getElementsByClassName("tip-content3")[0];
         x.style.opacity = "1";
-        x.style.transitionDelay = p + "s";
+        x.style.transitionDelay = p + "ms";
     }
     else {
         var x = document.getElementsByClassName("deleteObject")[0];

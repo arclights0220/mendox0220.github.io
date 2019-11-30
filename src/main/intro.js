@@ -27,7 +27,6 @@ function look(e) {
     if (e == 1) {
         var x = document.getElementsByClassName("tip-content")[0];
         x.style.opacity = "1";
-        x.style.transitionDelay = p + "ms";
     }
     else if (e == 2) {
         var x = document.getElementsByClassName("tip-content2")[0];

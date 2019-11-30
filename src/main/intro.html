@@ -20,11 +20,12 @@
         <span class="tip-content">press tab key.</span>
         <div>
             <button class="outbtn1" id="eraser2" onmouseover="look(2)" onmouseout="Nlook(2)">erase</button>
-            <span class="tip-content2">press 'd'.</span>
+            <span class="tip-content2">press 'ctrl + d'.</span>
         </div>
         <div>
-            <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Cancel drawing mode</button>
-            <span class="tip-content3">press 'a'.</span>
+            <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Cancel drawing
+                mode</button>
+            <span class="tip-content3">press 'ctrl + a'.</span>
         </div>
 
 
@@ -38,7 +39,7 @@
                 <br>
                 <button id="clear-canvas" class="drawbtn">Clear</button>
                 <button class="drawbtn" id="eraser" onmouseover="look()" onmouseout="Nlook()">erase</button>
-                <span class="deleteObject">Cancel drawing mode and select then press 'd'.</span>
+                <span class="deleteObject">Cancel drawing mode and select then press 'ctrl + d'.</span>
                 <br>
                 <div id="drawing-mode-options">
                     <label for="drawing-mode-selector" style="width: 100px; height: 40px">Mode:</label>
@@ -336,28 +337,34 @@
                 }));
             })
 
-            window.addEventListener("keypress", (e) => {
-                if (e.keyCode == 100) {
+            var isCtrl = false;
+            document.onkeyup = function (e) {
+                if (e.which == 17) isCtrl = false;
+            }
+
+            document.onkeydown = function (e) {
+                if (e.which == 17) isCtrl = true;
+                if (e.which == 65 && isCtrl == true) {
+                    canvas.isDrawingMode = !canvas.isDrawingMode;
+                    if (canvas.isDrawingMode) {
+                        drawingModeEl.innerHTML = 'Cancel drawing mode';
+                        drawingModeEl2.innerHTML = "Cancel drawing mode";
+                        drawingOptionsEl.style.display = '';
+                    } else {
+                        drawingModeEl.innerHTML = 'Enter drawing mode';
+                        drawingModeEl2.innerHTML = 'Enter drawing mode';
+                        drawingOptionsEl.style.display = 'none';
+                    }
+                    return false;
+                }
+                if (e.which == 68 && isCtrl == true) {
                     canvas.getActiveObjects().forEach((obj) => {
                         canvas.remove(obj)
                     });
                     canvas.discardActiveObject().renderAll()
+                    return false;
                 }
-                if (e.keyCode == 97) {
-                    console.log("a")
-                    canvas.isDrawingMode = !canvas.isDrawingMode;
-                if (canvas.isDrawingMode) {
-                    drawingModeEl.innerHTML = 'Cancel drawing mode';
-                    drawingOptionsEl.style.display = '';
-                    drawingModeEl2.innerHTML = "Cancel drawing mode";
-                } else {
-                    drawingModeEl.innerHTML = 'Enter drawing mode';
-                    drawingOptionsEl.style.display = 'none';
-                    drawingModeEl2.innerHTML = 'Enter drawing mode';
-                }
-                }
-            })
-
+            }
 
         })();
 

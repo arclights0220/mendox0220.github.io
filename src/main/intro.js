@@ -22,7 +22,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
     }
 })
-var p = 444;
+var p = 10;
 function look(e) {
     if (e == 1) {
         var x = document.getElementsByClassName("tip-content")[0];

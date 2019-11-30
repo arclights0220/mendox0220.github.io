@@ -22,21 +22,27 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
     }
 })
-var p = 0;
+var p = 1;
 function look(e) {
     if (e == 1) {
         var x = document.getElementsByClassName("tip-content")[0];
         x.style.opacity = "1";
+        x.style.transitionDelay = p + "s";
     }
     else if (e == 2) {
         var x = document.getElementsByClassName("tip-content2")[0];
         x.style.opacity = "1";
         x.style.transitionDelay = p + "s";
-        p++;
+    }
+    else if (e == 3) {
+        var x = document.getElementsByClassName("tip-content3")[0];
+        x.style.opacity = "1";
+        x.style.transitionDelay = p + "s";
     }
     else {
         var x = document.getElementsByClassName("deleteObject")[0];
         x.style.opacity = "1";
+        x.style.transitionDelay = p + "s";
     }
    
 }
@@ -49,9 +55,22 @@ function Nlook(e) {
         var x = document.getElementsByClassName("tip-content2")[0];
         x.style.opacity = "0";
     }
+    else if (e == 3) {
+        var x = document.getElementsByClassName("tip-content3")[0];
+        x.style.opacity = "0";
+    }
     else {
         var x = document.getElementsByClassName("deleteObject")[0];
         x.style.opacity = "0";
     }
 }
 
+function download_image() {
+    var name = document.getElementById("proname").value;
+    var canvas = document.getElementById("canvas");
+    image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    var link = document.createElement('a');
+    link.download = name + ".png";
+    link.href = image;
+    link.click();
+}

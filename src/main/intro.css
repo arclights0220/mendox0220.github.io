@@ -178,6 +178,13 @@
     opacity: 0;
     transition-duration: 333ms;
   }
+  .tip-content3{
+    position: absolute;
+    top: calc(10vh + 90px);
+    left: calc(93vw + 20px);
+    opacity: 0;
+    transition-duration: 333ms;
+  }
   
   .deleteObject{
     position: absolute;

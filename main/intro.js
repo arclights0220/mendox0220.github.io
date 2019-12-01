@@ -76,3 +76,4 @@ function download_image() {
     link.href = image;
     link.click();
 }
+

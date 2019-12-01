@@ -15,19 +15,20 @@
         </div>
     </div>
     <div id="main">
-        <span id="Lnbtn" style="font-size:30px; cursor:pointer;margin-left: 10px;" onclick="openLNav()"onmouseover="look(1)" onmouseout="Nlook(1)">&#9776;</span>
+        <span id="Lnbtn" style="font-size:30px; cursor:pointer;margin-left: 10px;" onclick="openLNav()"
+            onmouseover="look(1)" onmouseout="Nlook(1)">&#9776;</span>
         <span class="tip-content">press tab key.</span>
 
-            <div>
-                <button class="outbtn1" id="eraser2" onmouseover="look(2)" onmouseout="Nlook(2)">erase</button>
-                <span class="tip-content2">press 'ctrl + d'.</span>
-            </div>
-            <div>
-                <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Cancel drawing
-                    mode</button>
-                <span class="tip-content3">press 'ctrl + a'.</span>
-            </div>
-    
+        <div>
+            <button class="outbtn1" id="eraser2" onmouseover="look(2)" onmouseout="Nlook(2)">erase</button>
+            <span class="tip-content2">press 'ctrl + d'.</span>
+        </div>
+        <div>
+            <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Cancel drawing
+                mode</button>
+            <span class="tip-content3">press 'ctrl + a'.</span>
+        </div>
+
 
 
 
@@ -82,7 +83,10 @@
 
         <div style="width: 7vw; height: 100%;"></div>
         <div id="draw">
-            <div style="width: 100%;height: 3vh;"></div>
+            <div style="width: 100%;height: 3vh;display: flex; justify-content: center; align-items: center;">
+                    <div>
+                            1600 X 900 CANVAS
+                        </div></div>
             <div id="isCanvas">
                 <canvas id="canvas" width="1600px" height="900px"></canvas>
             </div>
@@ -366,11 +370,42 @@
                     canvas.discardActiveObject().renderAll()
                     return false;
                 }
+                if (e.which == 67 && isCtrl == true) {
+                    canvas.getActiveObject().clone(function (cloned) {
+                        _clipboard = cloned;
+                    });
+                    return false;
+                }
+                if (e.which == 86 && isCtrl == true) {
+                    _clipboard.clone(function (clonedObj) {
+                        canvas.discardActiveObject();
+                        clonedObj.set({
+                            left: clonedObj.left + 15,
+                            top: clonedObj.top + 15,
+                            evented: true,
+                        });
+                        if (clonedObj.type === 'activeSelection') {
+                            // active selection needs a reference to the canvas.
+                            clonedObj.canvas = canvas;
+                            clonedObj.forEachObject(function (obj) {
+                                canvas.add(obj);
+                            });
+                            // this should solve the unselectability
+                            clonedObj.setCoords();
+                        } else {
+                            canvas.add(clonedObj);
+                        }
+                        _clipboard.top += 15;
+                        _clipboard.left += 15;
+                        canvas.setActiveObject(clonedObj);
+                        canvas.requestRenderAll();
+                    });
+                    return false;
+                }
             }
 
 
         })();
-
     </script>
 </body>
 

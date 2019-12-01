@@ -31,7 +31,7 @@
     margin-right: 40px;
   }
 
-  #creNew,
+  .creNew,
   #myProject,
   #login,
   #resister {
@@ -90,14 +90,14 @@
   }
 
   #myProject,
-  #creNew,
+  .creNew,
   #login,
   #resister {
     transition: 1s;
   }
 
   #myProject:hover,
-  #creNew:hover,
+  .creNew:hover,
   #login:hover,
   #resister:hover {
     color: #00FFEE;

@@ -11,7 +11,8 @@
     <div id="topBar">
         <div class="logo">L I : V E</div>
         <div class="jaw">
-            <a href="./intro.html" id="creNew">CreNewProject</a>
+            <a href="./Howtouse.html" class="creNew" target="_blank">How to use</a>
+            <a href="./intro.html" class="creNew">CreNewProject</a>
         </div>
     </div>
     <div id="main">
@@ -24,7 +25,7 @@
             <span class="tip-content2">press 'ctrl + d'.</span>
         </div>
         <div>
-            <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Cancel drawing
+            <button id="drawing-mode2" class="outbtn2" onmouseover="look(3)" onmouseout="Nlook(3)">Enter select
                 mode</button>
             <span class="tip-content3">press 'ctrl + a'.</span>
         </div>
@@ -36,11 +37,11 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeLNav()">&times;</a>
 
             <div id="about" style="display: inline-block; margin-left: 10px;">
-                <button id="drawing-mode" class="drawbtn">Cancel drawing mode</button>
+                <button id="drawing-mode" class="drawbtn">Enter select mode</button>
                 <br>
                 <button id="clear-canvas" class="drawbtn">Clear</button>
-                <button class="drawbtn" id="eraser" onmouseover="look()" onmouseout="Nlook()">erase</button>
-                <span class="deleteObject">Cancel drawing mode and select then press 'ctrl + d'.</span>
+                <button class="drawbtn" id="eraser" onmouseover="look(4)" onmouseout="Nlook(4)">erase</button>
+                <span class="deleteObject">Enter select mode and select then press 'ctrl + d'.</span>
                 <br>
                 <div id="drawing-mode-options">
                     <label for="drawing-mode-selector" style="width: 100px; height: 40px">Mode:</label>
@@ -83,10 +84,11 @@
 
         <div style="width: 7vw; height: 100%;"></div>
         <div id="draw">
-            <div style="width: 100%;height: 3vh;display: flex; justify-content: center; align-items: center;">
-                    <div>
-                            1600 X 900 CANVAS
-                        </div></div>
+            <div style="width: 100%;height: 3vh; display: flex; justify-content: center; align-items: center;">
+                <div>
+                    1600 X 900 CANVAS
+                </div>
+            </div>
             <div id="isCanvas">
                 <canvas id="canvas" width="1600px" height="900px"></canvas>
             </div>
@@ -126,9 +128,9 @@
             dmElement.onclick = function () {
                 canvas.isDrawingMode = !canvas.isDrawingMode;
                 if (canvas.isDrawingMode) {
-                    dmElement.innerHTML = 'Cancel drawing mode';
+                    dmElement.innerHTML = 'Enter select mode';
                     doElement.style.display = '';
-                    dmElement2.innerHTML = "Cancel drawing mode";
+                    dmElement2.innerHTML = "Enter select mode";
                 } else {
                     dmElement.innerHTML = 'Enter drawing mode';
                     doElement.style.display = 'none';
@@ -138,8 +140,8 @@
             dmElement2.onclick = function () {
                 canvas.isDrawingMode = !canvas.isDrawingMode;
                 if (canvas.isDrawingMode) {
-                    dmElement.innerHTML = 'Cancel drawing mode';
-                    dmElement2.innerHTML = 'Cancel drawing mode';
+                    dmElement.innerHTML = 'Enter select mode';
+                    dmElement2.innerHTML = 'Enter select mode';
                     doElement.style.display = '';
                 } else {
                     dmElement.innerHTML = 'Enter drawing mode';
@@ -353,8 +355,8 @@
                 if (e.which == 65 && isCtrl == true) {
                     canvas.isDrawingMode = !canvas.isDrawingMode;
                     if (canvas.isDrawingMode) {
-                        dmElement.innerHTML = 'Cancel drawing mode';
-                        dmElement2.innerHTML = "Cancel drawing mode";
+                        dmElement.innerHTML = 'Enter select mode';
+                        dmElement2.innerHTML = "Enter select mode";
                         doElement.style.display = '';
                     } else {
                         dmElement.innerHTML = 'Enter drawing mode';

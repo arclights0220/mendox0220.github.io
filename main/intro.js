@@ -40,11 +40,13 @@ function look(e) {
         x.style.transitionDelay = q + "ms";
         q = 1000;
     }
-    else {
+    else if(e == 4){
+        console.log("1")
         var x = document.getElementsByClassName("deleteObject")[0];
         x.style.opacity = "1";
-        x.style.transitionDelay = m + "s";
+        x.style.transitionDelay = m + "ms";
         m = 1000;
+        console.log("@")
     }
    
 }
@@ -61,7 +63,7 @@ function Nlook(e) {
         var x = document.getElementsByClassName("tip-content3")[0];
         x.style.opacity = "0";
     }
-    else {
+    else if(e == 4){
         var x = document.getElementsByClassName("deleteObject")[0];
         x.style.opacity = "0";
     }

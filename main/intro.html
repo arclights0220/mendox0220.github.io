@@ -50,7 +50,6 @@
                         <option>Circle</option>
                         <option>Spray</option>
                         <option>Pattern</option>
-
                         <option>hline</option>
                         <option>vline</option>
                         <option>square</option>
@@ -387,12 +386,10 @@
                             evented: true,
                         });
                         if (clonedObj.type === 'activeSelection') {
-                            // active selection needs a reference to the canvas.
                             clonedObj.canvas = canvas;
                             clonedObj.forEachObject(function (obj) {
                                 canvas.add(obj);
                             });
-                            // this should solve the unselectability
                             clonedObj.setCoords();
                         } else {
                             canvas.add(clonedObj);
